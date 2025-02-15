@@ -1,0 +1,134 @@
+openapi: "3.0.3"
+info:
+  title: Example Task API
+  version: "1.0.0"
+  description: >
+    This is a sample REST API for managing tasks.
+    It demonstrates basic CRUD operations on tasks.
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /tasks:
+    get:
+      summary: List Tasks
+      description: Retrieve a list of all tasks.
+      responses:
+        '200':
+          description: A JSON array of task objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+    post:
+      summary: Create Task
+      description: Create a new task.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskInput"
+      responses:
+        '201':
+          description: Task created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+  /tasks/{taskId}:
+    get:
+      summary: Get Task
+      description: Retrieve a single task by its ID.
+      parameters:
+        - name: taskId
+          in: path
+          description: The ID of the task to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Task details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        '404':
+          description: Task not found.
+    put:
+      summary: Update Task
+      description: Update an existing task by its ID.
+      parameters:
+        - name: taskId
+          in: path
+          description: The ID of the task to update.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskInput"
+      responses:
+        '200':
+          description: Task updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        '404':
+          description: Task not found.
+    delete:
+      summary: Delete Task
+      description: Delete a task by its ID.
+      parameters:
+        - name: taskId
+          in: path
+          description: The ID of the task to delete.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Task deleted successfully. No content returned.
+        '404':
+          description: Task not found.
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "12345"
+        title:
+          type: string
+          example: "Buy groceries"
+        description:
+          type: string
+          example: "Milk, Bread, Butter"
+        completed:
+          type: boolean
+          example: false
+      required:
+        - id
+        - title
+        - completed
+    TaskInput:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Buy groceries"
+        description:
+          type: string
+          example: "Milk, Bread, Butter"
+        completed:
+          type: boolean
+          example: false
+      required:
+        - title

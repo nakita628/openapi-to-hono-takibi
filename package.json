@@ -6,6 +6,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4"
+    "@biomejs/biome": "^1.9.4",
+    "hono-takibi": "^0.4.2"
   }
 }
