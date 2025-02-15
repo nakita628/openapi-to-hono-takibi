@@ -8,5 +8,8 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "hono-takibi": "^0.4.2"
+  },
+  "dependencies": {
+    "@hono/zod-openapi": "^0.18.4"
   }
 }
