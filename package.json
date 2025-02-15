@@ -1,0 +1,11 @@
+{
+  "name": "openapi-to-hono-takibi",
+  "scripts": {
+    "fmt": "pnpm biome format --write ./",
+    "lint": "pnpm biome lint"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  }
+}
